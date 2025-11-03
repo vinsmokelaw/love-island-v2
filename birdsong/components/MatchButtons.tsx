@@ -6,10 +6,9 @@ interface MatchButtonsProps {
 export default function MatchButtons({ onLike, onPass }: MatchButtonsProps) {
   return (
     <div className="flex items-center justify-center gap-8">
-      {/* Pass Button */}
       <button
         onClick={onPass}
-        className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-200 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500"
+        className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500"
         aria-label="Pass"
       >
         <svg
@@ -25,10 +24,9 @@ export default function MatchButtons({ onLike, onPass }: MatchButtonsProps) {
         </svg>
       </button>
 
-      {/* Like Button */}
       <button
         onClick={onLike}
-        className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-transform duration-200 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-500"
+        className="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-500"
         aria-label="Like"
       >
         <svg

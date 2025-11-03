@@ -54,13 +54,13 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-pink-600 via-fuchsia-500 to-pink-700 dark:from-fuchsia-900 dark:to-pink-900">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white/10 dark:bg-black/30 rounded-2xl shadow-2xl backdrop-blur-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-red-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-md w-full space-y-8 p-8">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-white mb-2">
-            Love Island
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          Love Island
           </h1>
-          <p className="text-pink-100">
+          <p className="text-gray-600 dark:text-gray-400">
             {isSignUp ? "Create Your Account" : "Sign in to your account"}
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function AuthPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-pink-100"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Email
             </label>
@@ -79,7 +79,7 @@ export default function AuthPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-fuchsia-300/50 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yellow-300 focus:border-yellow-300 bg-white/20 text-white"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-800 dark:text-white"
               placeholder="Enter your email"
             />
           </div>
@@ -87,7 +87,7 @@ export default function AuthPage() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-pink-100"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Password
             </label>
@@ -97,19 +97,21 @@ export default function AuthPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-fuchsia-300/50 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-yellow-300 focus:border-yellow-300 bg-white/20 text-white"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-800 dark:text-white"
               placeholder="Enter your password"
             />
           </div>
 
           {error && (
-            <div className="text-yellow-200 text-sm text-center">{error}</div>
+            <div className="text-red-600 dark:text-red-400 text-sm">
+              {error}
+            </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex justify-center py-3 px-4 rounded-full shadow-lg text-sm font-bold text-white bg-gradient-to-r from-yellow-300 to-pink-400 hover:scale-105 transition-transform disabled:opacity-50"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:opacity-50"
           >
             {loading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
           </button>
@@ -118,7 +120,7 @@ export default function AuthPage() {
         <div className="text-center">
           <button
             onClick={() => setIsSignUp(!isSignUp)}
-            className="text-yellow-300 hover:text-yellow-200 text-sm font-medium"
+            className="text-pink-600 dark:text-pink-400 hover:text-pink-500 dark:hover:text-pink-300 text-sm"
           >
             {isSignUp
               ? "Already have an account? Sign in"
