@@ -1,50 +1,3 @@
----
-
-# FullStack Dating Website with Next.js, Supabase & Stream
-
-<div align="center">
-  <br />
-  <a href="https://youtu.be/8QDT776XtO8" target="_blank">
-    <img width="1280" height="720" alt="Copy of Copy of Copy of Copy of Copy of Copy of Copy of Copy of 10,000 REACT COMPONENTS (5)" src="https://github.com/user-attachments/assets/34f397f9-f989-4c33-a3fd-de13aa6f4305" />
-  </a>
-  <br />
-  <div>
-    <img src="https://img.shields.io/badge/-Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
-    <img src="https://img.shields.io/badge/-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
-    <img src="https://img.shields.io/badge/-Stream-0057FF?style=for-the-badge&logo=getstream&logoColor=white" alt="Stream" />
-    <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-    <img src="https://img.shields.io/badge/-TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-    <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  </div>
-  <h3 align="center">Build a FullStack Dating Website with Next.js, Supabase, Stream & TailwindCSS</h3>
-  <div align="center">
-    Follow the full video tutorial on 
-    <a href="https://youtu.be/8QDT776XtO8" target="_blank"><b>YouTube</b></a>
-  </div>
-  <br />
-</div>
-
-## 📋 Table of Contents
-
-1. [Introduction](#-introduction)
-2. [Tech Stack](#-tech-stack)
-3. [Features](#-features)
-4. [Timestamps](#-timestamps)
-5. [Quick Start](#-quick-start)
-6. [Screenshots](#-screenshots)
-7. [Deployment](#-deployment)
-8. [Useful Links](#-useful-links)
-
----
-
-## 🚀 Introduction
-
-In this in-depth tutorial you'll build a production-ready **FullStack Dating Website** using **Next.js**, **Supabase** (Postgres + Realtime), and **Stream** for chat & video. We cover everything from authentication and DB schema to matching logic, realtime chat, and one-to-one video calls — a complete, intermediate → advanced project.
-
-🎥 Watch the full tutorial: [YouTube](https://youtu.be/8QDT776XtO8)
-
----
-
 ## ⚙️ Tech Stack
 
 * **Next.js (App Router)** – Server & client components for fast SSR/SSG
@@ -54,8 +7,7 @@ In this in-depth tutorial you'll build a production-ready **FullStack Dating Web
 * **TypeScript** – Type-safe codebase
 * **Vercel** – Recommended hosting & serverless deployment
 
----
-
+-
 ## ⚡️ Features
 
 * 🔒 **Auth** — Secure sign-up, sign-in, and session handling
@@ -67,10 +19,6 @@ In this in-depth tutorial you'll build a production-ready **FullStack Dating Web
 * 🎥 **Live Video Calls** — WebRTC-backed calls using Stream SDK
 * 📱 **Responsive UI** — Mobile-first design with Tailwind
 * ✅ **Production-ready** — Env config, deployment guide, and seeding scripts
-
----
-
-## 👌 Quick Start
 
 ### Prerequisites
 
@@ -285,18 +233,14 @@ CREATE POLICY "Users can view their own matches" ON public.matches
 
 ### Clone and Run
 
-```bash
 # replace with your repo when created
-git clone https://github.com/yourusername/nextjs-dating-app.git
+git clone 
 cd nextjs-dating-app
 npm install
 ```
 
 ### Environment
 
-Copy the example env and fill your keys:
-
-```bash
 cp .env.example .env.local
 # then edit .env.local with:
 # NEXT_PUBLIC_SUPABASE_URL=
