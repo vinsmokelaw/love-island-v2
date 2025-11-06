@@ -23,7 +23,6 @@ export default function AuthPage() {
 
   async function handleAuth(e: React.FormEvent) {
     e.preventDefault();
-
     setLoading(true);
     setError("");
 
@@ -33,7 +32,6 @@ export default function AuthPage() {
           email,
           password,
         });
-
         if (error) throw error;
         if (data.user && !data.session) {
           setError("Please check your email for a confirmation link");
@@ -46,8 +44,12 @@ export default function AuthPage() {
         });
         if (error) throw error;
       }
-    } catch (error: any) {
-      setError(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }
@@ -58,7 +60,7 @@ export default function AuthPage() {
       <div className="max-w-md w-full space-y-8 p-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          Love Island
+            Love Island
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
             {isSignUp ? "Create Your Account" : "Sign in to your account"}
@@ -103,9 +105,7 @@ export default function AuthPage() {
           </div>
 
           {error && (
-            <div className="text-red-600 dark:text-red-400 text-sm">
-              {error}
-            </div>
+            <div className="text-red-600 dark:text-red-400 text-sm">{error}</div>
           )}
 
           <button
