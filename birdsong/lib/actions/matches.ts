@@ -3,22 +3,15 @@
 import { UserProfile } from "@/app/profile/page";
 import { createClient } from "../supabase/server";
 
+// Define user preferences type
 interface UserPreferences {
   gender_preference?: string[];
-  [key: string]: any; // other preferences
-}
-
-interface LikeResponse {
-  success: boolean;
-  isMatch: boolean;
-  matchedUser?: UserProfile;
+  [key: string]: unknown; // other fields if needed
 }
 
 export async function getPotentialMatches(): Promise<UserProfile[]> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) throw new Error("Not authenticated.");
 
@@ -28,7 +21,7 @@ export async function getPotentialMatches(): Promise<UserProfile[]> {
     .neq("id", user.id)
     .limit(50);
 
-  if (error) throw new Error("Failed to fetch potential matches.");
+  if (error) throw new Error("Failed to fetch potential matches");
 
   const { data: userPrefs, error: prefsError } = await supabase
     .from("users")
@@ -36,18 +29,15 @@ export async function getPotentialMatches(): Promise<UserProfile[]> {
     .eq("id", user.id)
     .single();
 
-  if (prefsError) throw new Error("Failed to get user preferences.");
+  if (prefsError) throw new Error("Failed to get user preferences");
 
   const currentUserPrefs = userPrefs.preferences as UserPreferences;
   const genderPreference = currentUserPrefs?.gender_preference || [];
 
   const filteredMatches: UserProfile[] =
-    potentialMatches
-      ?.filter((match) => {
-        if (!genderPreference.length) return true;
-        return genderPreference.includes(match.gender);
-      })
-      .map((match) => ({
+    (potentialMatches
+      ?.filter(match => !genderPreference.length || genderPreference.includes(match.gender))
+      .map(match => ({
         id: match.id,
         full_name: match.full_name,
         username: match.username,
@@ -64,25 +54,21 @@ export async function getPotentialMatches(): Promise<UserProfile[]> {
         is_online: false,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-      })) || [];
+      }))) || [];
 
   return filteredMatches;
 }
 
-export async function likeUser(toUserId: string): Promise<LikeResponse> {
+export async function likeUser(toUserId: string) {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Not authenticated.");
 
   const { error: likeError } = await supabase.from("likes").insert({
     from_user_id: user.id,
     to_user_id: toUserId,
   });
-
-  if (likeError) throw new Error("Failed to create like.");
+  if (likeError) throw new Error("Failed to create like");
 
   const { data: existingLike, error: checkError } = await supabase
     .from("likes")
@@ -91,8 +77,9 @@ export async function likeUser(toUserId: string): Promise<LikeResponse> {
     .eq("to_user_id", user.id)
     .single();
 
-  if (checkError && checkError.code !== "PGRST116")
-    throw new Error("Failed to check for match.");
+  if (checkError && checkError.code !== "PGRST116") {
+    throw new Error("Failed to check for match");
+  }
 
   if (existingLike) {
     const { data: matchedUser, error: userError } = await supabase
@@ -101,7 +88,7 @@ export async function likeUser(toUserId: string): Promise<LikeResponse> {
       .eq("id", toUserId)
       .single();
 
-    if (userError) throw new Error("Failed to fetch matched user.");
+    if (userError) throw new Error("Failed to fetch matched user");
 
     return {
       success: true,
@@ -115,10 +102,7 @@ export async function likeUser(toUserId: string): Promise<LikeResponse> {
 
 export async function getUserMatches(): Promise<UserProfile[]> {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("Not authenticated.");
 
   const { data: matches, error } = await supabase
@@ -127,7 +111,7 @@ export async function getUserMatches(): Promise<UserProfile[]> {
     .or(`user1_id.eq.${user.id},user2_id.eq.${user.id}`)
     .eq("is_active", true);
 
-  if (error) throw new Error("Failed to fetch matches.");
+  if (error) throw new Error("Failed to fetch matches");
 
   const matchedUsers: UserProfile[] = [];
 
